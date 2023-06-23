@@ -1,0 +1,6277 @@
+{
+  "last_node_id": 169,
+  "last_link_id": 300,
+  "nodes": [
+    {
+      "id": 13,
+      "type": "API Output",
+      "pos": [
+        2818.7260085227276,
+        1139.88912553267
+      ],
+      "size": {
+        "0": 210,
+        "1": 106
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 98,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "json_object",
+          "type": "JSON_OBJECT",
+          "link": 71
+        },
+        {
+          "name": "extra_object2",
+          "type": "JSON_OBJECT",
+          "link": null
+        },
+        {
+          "name": "extra_object3",
+          "type": "JSON_OBJECT",
+          "link": null
+        },
+        {
+          "name": "extra_object4",
+          "type": "JSON_OBJECT",
+          "link": null
+        },
+        {
+          "name": "extra_object5",
+          "type": "JSON_OBJECT",
+          "link": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "API Output"
+      }
+    },
+    {
+      "id": 40,
+      "type": "Serialize (API)",
+      "pos": [
+        2507.726008522727,
+        981.8891255326706
+      ],
+      "size": {
+        "0": 270.3999938964844,
+        "1": 78
+      },
+      "flags": {},
+      "order": 96,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "*",
+          "link": 137
+        },
+        {
+          "name": "json_object_optional",
+          "type": "JSON_OBJECT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "JSON_OBJECT",
+          "type": "JSON_OBJECT",
+          "links": [],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Serialize (API)"
+      },
+      "widgets_values": [
+        "RETURN_PNG"
+      ]
+    },
+    {
+      "id": 46,
+      "type": "SaveImage",
+      "pos": [
+        2964.7260085227276,
+        490.88912553267033
+      ],
+      "size": [
+        315,
+        270.00000381469727
+      ],
+      "flags": {},
+      "order": 90,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 78
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "APITest/APITest"
+      ]
+    },
+    {
+      "id": 55,
+      "type": "Switch (API)",
+      "pos": [
+        2509.726008522727,
+        567.8891255326706
+      ],
+      "size": {
+        "0": 273.2540283203125,
+        "1": 102
+      },
+      "flags": {},
+      "order": 88,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": null
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 290
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            78
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "save_images",
+        true
+      ]
+    },
+    {
+      "id": 34,
+      "type": "CLIPTextEncode",
+      "pos": [
+        250,
+        870
+      ],
+      "size": {
+        "0": 226.75205993652344,
+        "1": 95.99998474121094
+      },
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 42
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 72,
+          "widget": {
+            "name": "text",
+            "config": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            45
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 32,
+      "type": "CLIPTextEncode",
+      "pos": [
+        199,
+        722
+      ],
+      "size": {
+        "0": 226.75205993652344,
+        "1": 83.8530044555664
+      },
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 41
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 64,
+          "widget": {
+            "name": "text",
+            "config": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            80,
+            83
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 58,
+      "type": "ControlNetLoader",
+      "pos": [
+        -540,
+        1580
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "control_net_name",
+          "type": "controlnet11Models_depth.safetensors",
+          "link": 82,
+          "widget": {
+            "name": "control_net_name",
+            "config": [
+              [
+                "controlnet11Models_depth.safetensors"
+              ]
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            84
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "controlnet11Models_depth.safetensors"
+      ]
+    },
+    {
+      "id": 62,
+      "type": "Input (API)",
+      "pos": [
+        -970,
+        1900
+      ],
+      "size": {
+        "0": 278.162841796875,
+        "1": 106
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            86
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[0].weight",
+        "float",
+        "1.0"
+      ]
+    },
+    {
+      "id": 65,
+      "type": "ControlNetLoader",
+      "pos": [
+        -540,
+        2180
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "control_net_name",
+          "type": "controlnet11Models_depth.safetensors",
+          "link": 91,
+          "widget": {
+            "name": "control_net_name",
+            "config": [
+              [
+                "controlnet11Models_depth.safetensors"
+              ]
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            93
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "controlnet11Models_depth.safetensors"
+      ]
+    },
+    {
+      "id": 71,
+      "type": "ControlNetLoader",
+      "pos": [
+        -470,
+        2760
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "control_net_name",
+          "type": "controlnet11Models_depth.safetensors",
+          "link": 99,
+          "widget": {
+            "name": "control_net_name",
+            "config": [
+              [
+                "controlnet11Models_depth.safetensors"
+              ]
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            101
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "controlnet11Models_depth.safetensors"
+      ]
+    },
+    {
+      "id": 73,
+      "type": "ControlNetApply",
+      "pos": [
+        -60,
+        2760
+      ],
+      "size": {
+        "0": 317.4000244140625,
+        "1": 98
+      },
+      "flags": {},
+      "order": 78,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 108
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 101
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 158
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "link": 103,
+          "widget": {
+            "name": "strength",
+            "config": [
+              "FLOAT",
+              {
+                "default": 1,
+                "min": 0,
+                "max": 10,
+                "step": 0.01
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            98
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetApply"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 60,
+      "type": "ControlNetApply",
+      "pos": [
+        -130,
+        1580
+      ],
+      "size": {
+        "0": 317.4000244140625,
+        "1": 98
+      },
+      "flags": {},
+      "order": 72,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 83
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 84
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 156
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "link": 86,
+          "widget": {
+            "name": "strength",
+            "config": [
+              "FLOAT",
+              {
+                "default": 1,
+                "min": 0,
+                "max": 10,
+                "step": 0.01
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            87,
+            107
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetApply"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 67,
+      "type": "ControlNetApply",
+      "pos": [
+        -130,
+        2180
+      ],
+      "size": {
+        "0": 317.4000244140625,
+        "1": 98
+      },
+      "flags": {},
+      "order": 75,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 107
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 93
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 157
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "link": 95,
+          "widget": {
+            "name": "strength",
+            "config": [
+              "FLOAT",
+              {
+                "default": 1,
+                "min": 0,
+                "max": 10,
+                "step": 0.01
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            90,
+            108
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetApply"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 66,
+      "type": "Input (API)",
+      "pos": [
+        -990,
+        2180
+      ],
+      "size": {
+        "0": 326.162841796875,
+        "1": 106
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        },
+        {
+          "name": "default_string",
+          "type": "STRING",
+          "link": 121,
+          "widget": {
+            "name": "default_string",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            91
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[1].model",
+        "string",
+        "controlnet11Models_depth.safetensors"
+      ]
+    },
+    {
+      "id": 69,
+      "type": "Input (API)",
+      "pos": [
+        -970,
+        2500
+      ],
+      "size": {
+        "0": 278.162841796875,
+        "1": 106
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            95
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[1].weight",
+        "float",
+        "1.0"
+      ]
+    },
+    {
+      "id": 72,
+      "type": "Input (API)",
+      "pos": [
+        -920,
+        2760
+      ],
+      "size": {
+        "0": 326.162841796875,
+        "1": 106
+      },
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        },
+        {
+          "name": "default_string",
+          "type": "STRING",
+          "link": 122,
+          "widget": {
+            "name": "default_string",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            99
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[2].model",
+        "string",
+        "controlnet11Models_depth.safetensors"
+      ]
+    },
+    {
+      "id": 75,
+      "type": "Input (API)",
+      "pos": [
+        -900,
+        3080
+      ],
+      "size": {
+        "0": 278.162841796875,
+        "1": 106
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            103
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[2].weight",
+        "float",
+        "1.0"
+      ]
+    },
+    {
+      "id": 59,
+      "type": "Input (API)",
+      "pos": [
+        -990,
+        1580
+      ],
+      "size": {
+        "0": 326.162841796875,
+        "1": 106
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        },
+        {
+          "name": "default_string",
+          "type": "STRING",
+          "link": 120,
+          "widget": {
+            "name": "default_string",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            82
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[0].model",
+        "string",
+        "controlnet11Models_depth.safetensors"
+      ]
+    },
+    {
+      "id": 48,
+      "type": "Serialize (API)",
+      "pos": [
+        2493.726008522727,
+        1120.88912553267
+      ],
+      "size": {
+        "0": 270.3999938964844,
+        "1": 78
+      },
+      "flags": {},
+      "order": 97,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "*",
+          "link": 138
+        },
+        {
+          "name": "json_object_optional",
+          "type": "JSON_OBJECT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "JSON_OBJECT",
+          "type": "JSON_OBJECT",
+          "links": [
+            71
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Serialize (API)"
+      },
+      "widgets_values": [
+        "images"
+      ]
+    },
+    {
+      "id": 57,
+      "type": "Switch (API)",
+      "pos": [
+        339,
+        1564
+      ],
+      "size": {
+        "0": 285,
+        "1": 102
+      },
+      "flags": {},
+      "order": 74,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 80
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 87
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            105
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[0]",
+        false
+      ]
+    },
+    {
+      "id": 61,
+      "type": "Input (API)",
+      "pos": [
+        -980,
+        1740
+      ],
+      "size": {
+        "0": 278.162841796875,
+        "1": 106
+      },
+      "flags": {},
+      "order": 63,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": 88
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            116
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[0].image",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 86,
+      "type": "PrimitiveNode",
+      "pos": [
+        -2351.3693923828127,
+        143.92841813964847
+      ],
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            120,
+            121,
+            122
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "default_string",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Default ControlNet Model",
+      "properties": {},
+      "widgets_values": [
+        "controlnet11Models_depth.safetensors"
+      ]
+    },
+    {
+      "id": 89,
+      "type": "Reroute",
+      "pos": [
+        2356.1805761718747,
+        1059.9799902343748
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 95,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 293
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [
+            137,
+            138
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 79,
+      "type": "Note",
+      "pos": [
+        1231,
+        1534
+      ],
+      "size": {
+        "0": 210,
+        "1": 90.90908813476562
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "For some reason, automatic1111 returns the depth map (or other controlnet inputs) with the results"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 64,
+      "type": "Switch (API)",
+      "pos": [
+        343,
+        2132
+      ],
+      "size": {
+        "0": 285,
+        "1": 102
+      },
+      "flags": {},
+      "order": 77,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 105
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 90
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            106
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[1]",
+        false
+      ]
+    },
+    {
+      "id": 77,
+      "type": "Make Image Batch",
+      "pos": [
+        1242,
+        1687
+      ],
+      "size": {
+        "0": 210,
+        "1": 126
+      },
+      "flags": {},
+      "order": 87,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 282
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 117
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image5",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image6",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            115
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Make Image Batch"
+      }
+    },
+    {
+      "id": 68,
+      "type": "Input (API)",
+      "pos": [
+        -980,
+        2340
+      ],
+      "size": {
+        "0": 278.162841796875,
+        "1": 106
+      },
+      "flags": {},
+      "order": 64,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": 96
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            139
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[1].image",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 78,
+      "type": "Switch (API)",
+      "pos": [
+        1605,
+        1550
+      ],
+      "size": {
+        "0": 285,
+        "1": 102
+      },
+      "flags": {},
+      "order": 89,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 110
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 115
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            141,
+            143
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[0]",
+        false
+      ]
+    },
+    {
+      "id": 70,
+      "type": "Switch (API)",
+      "pos": [
+        400,
+        2692
+      ],
+      "size": {
+        "0": 285,
+        "1": 102
+      },
+      "flags": {},
+      "order": 80,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 106
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 98
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            109
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[2]",
+        false
+      ]
+    },
+    {
+      "id": 74,
+      "type": "Input (API)",
+      "pos": [
+        -910,
+        2920
+      ],
+      "size": {
+        "0": 278.162841796875,
+        "1": 106
+      },
+      "flags": {},
+      "order": 65,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": 104
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            145
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[2].image",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 92,
+      "type": "Switch (API)",
+      "pos": [
+        1556,
+        2165
+      ],
+      "size": {
+        "0": 285,
+        "1": 102
+      },
+      "flags": {},
+      "order": 92,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 143
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 142
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            147,
+            148
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[1]",
+        false
+      ]
+    },
+    {
+      "id": 80,
+      "type": "Change Channel Count",
+      "pos": [
+        -586,
+        1722
+      ],
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 68,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 116
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            117,
+            156
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Change Channel Count"
+      },
+      "widgets_values": [
+        "RGB"
+      ]
+    },
+    {
+      "id": 94,
+      "type": "Change Channel Count",
+      "pos": [
+        -569,
+        2306
+      ],
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 69,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 139
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            140,
+            157
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Change Channel Count"
+      },
+      "widgets_values": [
+        "RGB"
+      ]
+    },
+    {
+      "id": 96,
+      "type": "Change Channel Count",
+      "pos": [
+        -491,
+        2895
+      ],
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 70,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 145
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            146,
+            158
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Change Channel Count"
+      },
+      "widgets_values": [
+        "RGB"
+      ]
+    },
+    {
+      "id": 95,
+      "type": "Make Image Batch",
+      "pos": [
+        1184,
+        2818
+      ],
+      "size": {
+        "0": 210,
+        "1": 126
+      },
+      "flags": {},
+      "order": 93,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 147
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 146
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image5",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image6",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            144
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Make Image Batch"
+      }
+    },
+    {
+      "id": 93,
+      "type": "Make Image Batch",
+      "pos": [
+        1202,
+        2263
+      ],
+      "size": {
+        "0": 210,
+        "1": 126
+      },
+      "flags": {},
+      "order": 91,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 141
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 140
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image5",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image6",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            142
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Make Image Batch"
+      }
+    },
+    {
+      "id": 44,
+      "type": "Input (API)",
+      "pos": [
+        -1330,
+        790
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            64
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "prompt",
+        "string",
+        "photo of a lighthouse during a storm, giant waves"
+      ]
+    },
+    {
+      "id": 50,
+      "type": "Input (API)",
+      "pos": [
+        -1330,
+        950
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            72
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "negative_prompt",
+        "string",
+        ""
+      ]
+    },
+    {
+      "id": 51,
+      "type": "Input (API)",
+      "pos": [
+        -950,
+        790
+      ],
+      "size": {
+        "0": 210,
+        "1": 106
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            73
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "cfg_scale",
+        "float",
+        "8.0"
+      ]
+    },
+    {
+      "id": 53,
+      "type": "Input (API)",
+      "pos": [
+        -950,
+        1100
+      ],
+      "size": {
+        "0": 210,
+        "1": 106
+      },
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": 152
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            153
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "seed",
+        "integer",
+        ""
+      ]
+    },
+    {
+      "id": 111,
+      "type": "Value Switch (API)",
+      "pos": [
+        -670,
+        1090
+      ],
+      "size": {
+        "0": 210,
+        "1": 126
+      },
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_not_equal",
+          "type": "*",
+          "link": 153
+        },
+        {
+          "name": "on_equal",
+          "type": "*",
+          "link": 154
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            155
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Value Switch (API)"
+      },
+      "widgets_values": [
+        "seed",
+        "-1",
+        ""
+      ]
+    },
+    {
+      "id": 52,
+      "type": "Input (API)",
+      "pos": [
+        -950,
+        940
+      ],
+      "size": {
+        "0": 210,
+        "1": 106
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            74
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "steps",
+        "integer",
+        "36"
+      ]
+    },
+    {
+      "id": 110,
+      "type": "Random Seed (API)",
+      "pos": [
+        -1260,
+        1140
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            152,
+            154
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Random Seed (API)"
+      },
+      "widgets_values": [
+        5,
+        "fixed"
+      ]
+    },
+    {
+      "id": 56,
+      "type": "Input (API)",
+      "pos": [
+        -1320,
+        630
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        },
+        {
+          "name": "default_string",
+          "type": "STRING",
+          "link": 300,
+          "widget": {
+            "name": "default_string",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            79
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "override_settings.sd_model_checkpoint",
+        "string",
+        "reliberate_v10.safetensors"
+      ]
+    },
+    {
+      "id": 35,
+      "type": "KSampler",
+      "pos": [
+        811,
+        551
+      ],
+      "size": {
+        "0": 315,
+        "1": 474
+      },
+      "flags": {},
+      "order": 82,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 43
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 109
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 45
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 198
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": 73,
+          "widget": {
+            "name": "cfg",
+            "config": [
+              "FLOAT",
+              {
+                "default": 8,
+                "min": 0,
+                "max": 100
+              }
+            ]
+          }
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "link": 74,
+          "widget": {
+            "name": "steps",
+            "config": [
+              "INT",
+              {
+                "default": 20,
+                "min": 1,
+                "max": 10000
+              }
+            ]
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 155,
+          "widget": {
+            "name": "seed",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709552000
+              }
+            ]
+          }
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "link": 76,
+          "widget": {
+            "name": "denoise",
+            "config": [
+              "FLOAT",
+              {
+                "default": 1,
+                "min": 0,
+                "max": 1,
+                "step": 0.01
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            49
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        0,
+        "fixed",
+        36,
+        8,
+        "dpmpp_2m",
+        "karras",
+        0.6
+      ]
+    },
+    {
+      "id": 36,
+      "type": "VAEEncode",
+      "pos": [
+        187,
+        546
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 59,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 179
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 59
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            197
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      }
+    },
+    {
+      "id": 134,
+      "type": "Unary Mask Op",
+      "pos": [
+        2791.621218758452,
+        -1186.88229627089
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 66,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 256
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            206
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Unary Mask Op"
+      },
+      "widgets_values": [
+        "invert"
+      ]
+    },
+    {
+      "id": 133,
+      "type": "Switch (API)",
+      "pos": [
+        3263.621218758452,
+        -1306.88229627089
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 71,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 255
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 206
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            207
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "inpainting_mask_invert",
+        false
+      ]
+    },
+    {
+      "id": 132,
+      "type": "Image To Mask",
+      "pos": [
+        3650.6212187584524,
+        -1332.88229627089
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 73,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 207
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            200
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Image To Mask"
+      },
+      "widgets_values": [
+        "intensity"
+      ]
+    },
+    {
+      "id": 119,
+      "type": "ImageScale",
+      "pos": [
+        123.56724453693786,
+        -2486.0628202493135
+      ],
+      "size": {
+        "0": 315,
+        "1": 130
+      },
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 195
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 162,
+          "widget": {
+            "name": "width",
+            "config": [
+              "INT",
+              {
+                "default": 512,
+                "min": 1,
+                "max": 8192,
+                "step": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 163,
+          "widget": {
+            "name": "height",
+            "config": [
+              "INT",
+              {
+                "default": 512,
+                "min": 1,
+                "max": 8192,
+                "step": 1
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            165,
+            183
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "bilinear",
+        512,
+        512,
+        "disabled"
+      ]
+    },
+    {
+      "id": 120,
+      "type": "Constant Mask",
+      "pos": [
+        -276.4327554630622,
+        -2226.0628202493135
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "copy_image_size",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "explicit_width",
+          "type": "INT",
+          "link": 166,
+          "widget": {
+            "name": "explicit_width",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "explicit_height",
+          "type": "INT",
+          "link": 168,
+          "widget": {
+            "name": "explicit_height",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            169,
+            172,
+            177
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Constant Mask"
+      },
+      "widgets_values": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 125,
+      "type": "Blur",
+      "pos": [
+        143.56724453693786,
+        -2096.062820249313
+      ],
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 183
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            184
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Blur"
+      },
+      "widgets_values": [
+        30,
+        1
+      ]
+    },
+    {
+      "id": 123,
+      "type": "Paste By Mask",
+      "pos": [
+        583.567244536938,
+        -2116.062820249313
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 118
+      },
+      "flags": {},
+      "order": 49,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_base",
+          "type": "IMAGE",
+          "link": 184
+        },
+        {
+          "name": "image_to_paste",
+          "type": "IMAGE",
+          "link": 176
+        },
+        {
+          "name": "mask",
+          "type": "IMAGE",
+          "link": 177
+        },
+        {
+          "name": "mask_mapping_optional",
+          "type": "MASK_MAPPING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            178
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Paste By Mask"
+      },
+      "widgets_values": [
+        "keep_ratio_fit"
+      ]
+    },
+    {
+      "id": 114,
+      "type": "Value Switch (API)",
+      "pos": [
+        663.5672445369378,
+        -2386.0628202493126
+      ],
+      "size": {
+        "0": 315,
+        "1": 126
+      },
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_not_equal",
+          "type": "*",
+          "link": 165
+        },
+        {
+          "name": "on_equal",
+          "type": "*",
+          "link": 173
+        },
+        {
+          "name": "test_value",
+          "type": "STRING",
+          "link": 181,
+          "widget": {
+            "name": "test_value",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          },
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            174
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Value Switch (API)"
+      },
+      "widgets_values": [
+        "resize_mode",
+        "1",
+        "2"
+      ]
+    },
+    {
+      "id": 121,
+      "type": "Paste By Mask",
+      "pos": [
+        159.56724453693786,
+        -2274.0628202493135
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 118
+      },
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_base",
+          "type": "IMAGE",
+          "link": 169
+        },
+        {
+          "name": "image_to_paste",
+          "type": "IMAGE",
+          "link": 171
+        },
+        {
+          "name": "mask",
+          "type": "IMAGE",
+          "link": 172
+        },
+        {
+          "name": "mask_mapping_optional",
+          "type": "MASK_MAPPING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            173
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Paste By Mask"
+      },
+      "widgets_values": [
+        "keep_ratio_fill"
+      ]
+    },
+    {
+      "id": 47,
+      "type": "LoadImage",
+      "pos": [
+        -2399.279892578124,
+        794.3399829101562
+      ],
+      "size": {
+        "0": 315,
+        "1": 314
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            69,
+            161,
+            236
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "test.png",
+        "image"
+      ]
+    },
+    {
+      "id": 63,
+      "type": "Constant Mask",
+      "pos": [
+        -2346,
+        1201
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 60,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "copy_image_size",
+          "type": "IMAGE",
+          "link": 180
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            88,
+            96,
+            104
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Constant Mask"
+      },
+      "widgets_values": [
+        0,
+        512,
+        512
+      ]
+    },
+    {
+      "id": 122,
+      "type": "Value Switch (API)",
+      "pos": [
+        1033.5672445369382,
+        -2316.0628202493126
+      ],
+      "size": {
+        "0": 315,
+        "1": 126
+      },
+      "flags": {},
+      "order": 55,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_not_equal",
+          "type": "*",
+          "link": 174
+        },
+        {
+          "name": "on_equal",
+          "type": "*",
+          "link": 178
+        },
+        {
+          "name": "test_value",
+          "type": "STRING",
+          "link": 182,
+          "widget": {
+            "name": "test_value",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            179,
+            180,
+            244
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Value Switch (API)"
+      },
+      "widgets_values": [
+        "resize_mode",
+        "2",
+        "2"
+      ]
+    },
+    {
+      "id": 148,
+      "type": "Change Channel Count",
+      "pos": [
+        3512.621218758452,
+        -1472.8822962708891
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 244
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            245
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Change Channel Count"
+      },
+      "widgets_values": [
+        "RGB"
+      ]
+    },
+    {
+      "id": 140,
+      "type": "Value Switch (API)",
+      "pos": [
+        1343.8349180430623,
+        -1290.2596387941244
+      ],
+      "size": {
+        "0": 315,
+        "1": 126
+      },
+      "flags": {},
+      "order": 56,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_not_equal",
+          "type": "*",
+          "link": 217
+        },
+        {
+          "name": "on_equal",
+          "type": "*",
+          "link": 218
+        },
+        {
+          "name": "test_value",
+          "type": "STRING",
+          "link": 219,
+          "widget": {
+            "name": "test_value",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            253
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Value Switch (API)"
+      },
+      "widgets_values": [
+        "resize_mode",
+        "2",
+        "2"
+      ]
+    },
+    {
+      "id": 137,
+      "type": "Value Switch (API)",
+      "pos": [
+        930.8349180430616,
+        -1378.2596387941244
+      ],
+      "size": {
+        "0": 315,
+        "1": 126
+      },
+      "flags": {},
+      "order": 51,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_not_equal",
+          "type": "*",
+          "link": 210
+        },
+        {
+          "name": "on_equal",
+          "type": "*",
+          "link": 229
+        },
+        {
+          "name": "test_value",
+          "type": "STRING",
+          "link": 211,
+          "widget": {
+            "name": "test_value",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          },
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            217
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Value Switch (API)"
+      },
+      "widgets_values": [
+        "resize_mode",
+        "1",
+        "2"
+      ]
+    },
+    {
+      "id": 141,
+      "type": "Paste By Mask",
+      "pos": [
+        946.8349180430616,
+        -1119.2596387941244
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 118
+      },
+      "flags": {},
+      "order": 45,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_base",
+          "type": "IMAGE",
+          "link": 227
+        },
+        {
+          "name": "image_to_paste",
+          "type": "IMAGE",
+          "link": 243
+        },
+        {
+          "name": "mask",
+          "type": "IMAGE",
+          "link": 222
+        },
+        {
+          "name": "mask_mapping_optional",
+          "type": "MASK_MAPPING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            218
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Paste By Mask"
+      },
+      "widgets_values": [
+        "keep_ratio_fit"
+      ]
+    },
+    {
+      "id": 139,
+      "type": "Constant Mask",
+      "pos": [
+        55.834918043063176,
+        -1029.2596387941237
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "copy_image_size",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "explicit_width",
+          "type": "INT",
+          "link": 247,
+          "widget": {
+            "name": "explicit_width",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "explicit_height",
+          "type": "INT",
+          "link": 249,
+          "widget": {
+            "name": "explicit_height",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            222,
+            230
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Constant Mask"
+      },
+      "widgets_values": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 145,
+      "type": "Mask By Text",
+      "pos": [
+        -2036,
+        837
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 236
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            237
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Mask By Text"
+      },
+      "widgets_values": [
+        "lighthouse\n",
+        "",
+        0.2999999999999998,
+        "no"
+      ]
+    },
+    {
+      "id": 150,
+      "type": "Change Channel Count",
+      "pos": [
+        1732.8349180430623,
+        -1188.2596387941248
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 62,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 253
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            255,
+            256,
+            257
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Change Channel Count"
+      },
+      "widgets_values": [
+        "RGB"
+      ]
+    },
+    {
+      "id": 54,
+      "type": "Input (API)",
+      "pos": [
+        -930,
+        1260
+      ],
+      "size": {
+        "0": 210,
+        "1": 106
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            76
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "denoising_strength",
+        "float",
+        "0.8"
+      ]
+    },
+    {
+      "id": 129,
+      "type": "Input (API)",
+      "pos": [
+        -1253,
+        315
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": 237
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            240,
+            261,
+            272
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "mask",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 131,
+      "type": "VAEEncodeForInpaint",
+      "pos": [
+        4074.1602194908764,
+        -1400.921963214249
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "flags": {},
+      "order": 76,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 245
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 201
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 200
+        },
+        {
+          "name": "grow_mask_by",
+          "type": "INT",
+          "link": 295,
+          "widget": {
+            "name": "grow_mask_by",
+            "config": [
+              "INT",
+              {
+                "default": 6,
+                "min": 0,
+                "max": 64,
+                "step": 1
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            208
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEEncodeForInpaint"
+      },
+      "widgets_values": [
+        12
+      ]
+    },
+    {
+      "id": 162,
+      "type": "Image To Mask",
+      "pos": [
+        3464.2574523616267,
+        -95.53035304728161
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 54,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 274
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            276
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Image To Mask"
+      },
+      "widgets_values": [
+        "intensity"
+      ]
+    },
+    {
+      "id": 31,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -300,
+        510
+      ],
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "ckpt_name",
+          "type": "reliberate_v10.safetensors,v1-5-pruned-emaonly.ckpt",
+          "link": 79,
+          "widget": {
+            "name": "ckpt_name",
+            "config": [
+              [
+                "reliberate_v10.safetensors",
+                "v1-5-pruned-emaonly.ckpt"
+              ]
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            43
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            41,
+            42
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            50,
+            59,
+            201,
+            277
+          ],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "cineDiffusion_v3.safetensors"
+      ]
+    },
+    {
+      "id": 163,
+      "type": "VAEEncodeForInpaint",
+      "pos": [
+        4169.257452361625,
+        -485.53035304728115
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "flags": {},
+      "order": 58,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 288
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 277
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 276
+        },
+        {
+          "name": "grow_mask_by",
+          "type": "INT",
+          "link": 296,
+          "widget": {
+            "name": "grow_mask_by",
+            "config": [
+              "INT",
+              {
+                "default": 6,
+                "min": 0,
+                "max": 64,
+                "step": 1
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            278
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEEncodeForInpaint"
+      },
+      "widgets_values": [
+        12
+      ]
+    },
+    {
+      "id": 45,
+      "type": "Input (API)",
+      "pos": [
+        -961,
+        619
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": 69
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            171,
+            176,
+            195,
+            263,
+            283
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "init_images[0]",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 37,
+      "type": "VAEDecode",
+      "pos": [
+        1166,
+        543
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 83,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 49
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 50
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            110,
+            279,
+            280,
+            284
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 160,
+      "type": "Cut By Mask",
+      "pos": [
+        3034.2574523616267,
+        -405.5303530472809
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 122
+      },
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 272
+        },
+        {
+          "name": "mask",
+          "type": "IMAGE",
+          "link": 269
+        },
+        {
+          "name": "mask_mapping_optional",
+          "type": "MASK_MAPPING",
+          "link": null
+        },
+        {
+          "name": "force_resize_width",
+          "type": "INT",
+          "link": 270,
+          "widget": {
+            "name": "force_resize_width",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "force_resize_height",
+          "type": "INT",
+          "link": 271,
+          "widget": {
+            "name": "force_resize_height",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            273,
+            274
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Cut By Mask"
+      },
+      "widgets_values": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": 166,
+      "type": "Paste By Mask",
+      "pos": [
+        1587,
+        426
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 118
+      },
+      "flags": {},
+      "order": 84,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_base",
+          "type": "IMAGE",
+          "link": 283
+        },
+        {
+          "name": "image_to_paste",
+          "type": "IMAGE",
+          "link": 284
+        },
+        {
+          "name": "mask",
+          "type": "IMAGE",
+          "link": 291
+        },
+        {
+          "name": "mask_mapping_optional",
+          "type": "MASK_MAPPING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            286
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Paste By Mask"
+      },
+      "widgets_values": [
+        "resize"
+      ]
+    },
+    {
+      "id": 157,
+      "type": "Cut By Mask",
+      "pos": [
+        3024.2574523616267,
+        -645.5303530472811
+      ],
+      "size": [
+        342.5999755859375,
+        122
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 263
+        },
+        {
+          "name": "mask",
+          "type": "IMAGE",
+          "link": 264
+        },
+        {
+          "name": "mask_mapping_optional",
+          "type": "MASK_MAPPING",
+          "link": null
+        },
+        {
+          "name": "force_resize_width",
+          "type": "INT",
+          "link": 265,
+          "widget": {
+            "name": "force_resize_width",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "force_resize_height",
+          "type": "INT",
+          "link": 266,
+          "widget": {
+            "name": "force_resize_height",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            287
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Cut By Mask"
+      },
+      "widgets_values": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": 155,
+      "type": "Mask To Region",
+      "pos": [
+        2434.2574523616267,
+        -575.5303530472809
+      ],
+      "size": [
+        315,
+        202
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "IMAGE",
+          "link": 261
+        },
+        {
+          "name": "constraint_x",
+          "type": "INT",
+          "link": 259,
+          "widget": {
+            "name": "constraint_x",
+            "config": [
+              "INT",
+              {
+                "default": 64,
+                "min": 2,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "constraint_y",
+          "type": "INT",
+          "link": 260,
+          "widget": {
+            "name": "constraint_y",
+            "config": [
+              "INT",
+              {
+                "default": 64,
+                "min": 2,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "padding",
+          "type": "INT",
+          "link": 262,
+          "widget": {
+            "name": "padding",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            264,
+            269,
+            291,
+            292
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Mask To Region"
+      },
+      "widgets_values": [
+        0,
+        "keep_ratio",
+        64,
+        64,
+        0,
+        0,
+        "match_ratio"
+      ]
+    },
+    {
+      "id": 115,
+      "type": "Input (API)",
+      "pos": [
+        -1062,
+        -59
+      ],
+      "size": {
+        "0": 210,
+        "1": 106
+      },
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": 297
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            162,
+            166,
+            239,
+            246,
+            247,
+            259,
+            265,
+            270
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "width",
+        "integer",
+        "512"
+      ]
+    },
+    {
+      "id": 118,
+      "type": "Input (API)",
+      "pos": [
+        -1060,
+        94
+      ],
+      "size": {
+        "0": 210,
+        "1": 106
+      },
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": 298
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            163,
+            168,
+            214,
+            248,
+            249,
+            260,
+            266,
+            271
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "height",
+        "integer",
+        "768"
+      ]
+    },
+    {
+      "id": 165,
+      "type": "Switch (API)",
+      "pos": [
+        1595,
+        900
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 86,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 280
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 281
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            282,
+            290
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "mask",
+        false
+      ]
+    },
+    {
+      "id": 164,
+      "type": "Switch (API)",
+      "pos": [
+        1631,
+        728
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 85,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 279
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 286
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            281
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "inpaint_full_res",
+        false
+      ]
+    },
+    {
+      "id": 97,
+      "type": "Switch (API)",
+      "pos": [
+        1575,
+        2716
+      ],
+      "size": {
+        "0": 285,
+        "1": 102
+      },
+      "flags": {},
+      "order": 94,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 148
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 144
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            293
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "alwayson_scripts.controlnet.args[2]",
+        false
+      ]
+    },
+    {
+      "id": 124,
+      "type": "PrimitiveNode",
+      "pos": [
+        -339.43275546306165,
+        -2563.0628202493135
+      ],
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            181,
+            182,
+            211,
+            219
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "test_value",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          }
+        }
+      ],
+      "title": "test resize_mode",
+      "properties": {},
+      "widgets_values": [
+        "2"
+      ]
+    },
+    {
+      "id": 130,
+      "type": "Switch (API)",
+      "pos": [
+        462,
+        561
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 81,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 197
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 209
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            198
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "mask",
+        false
+      ]
+    },
+    {
+      "id": 151,
+      "type": "PreviewImage",
+      "pos": [
+        2280.962882886815,
+        -1224.2294020753748
+      ],
+      "size": [
+        210,
+        246
+      ],
+      "flags": {},
+      "order": 67,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 257
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 167,
+      "type": "Change Channel Count",
+      "pos": [
+        3538.445213248633,
+        -527.8222356276148
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 52,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 287
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            288,
+            294
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Change Channel Count"
+      },
+      "widgets_values": [
+        "RGB"
+      ]
+    },
+    {
+      "id": 158,
+      "type": "PreviewImage",
+      "pos": [
+        4040.257452361625,
+        -818.5303530472813
+      ],
+      "size": [
+        395.67003051757774,
+        279.5099121093749
+      ],
+      "flags": {},
+      "order": 57,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 294
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 161,
+      "type": "PreviewImage",
+      "pos": [
+        4035.257452361625,
+        -310.53035304728115
+      ],
+      "size": [
+        451.3300000000004,
+        343.6400000000001
+      ],
+      "flags": {},
+      "order": 53,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 273
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 168,
+      "type": "PreviewImage",
+      "pos": [
+        3057.2574523616267,
+        -128.53035304728138
+      ],
+      "size": [
+        273.8283935546874,
+        254.1326904296875
+      ],
+      "flags": {},
+      "order": 48,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 292
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 138,
+      "type": "ImageScale",
+      "pos": [
+        462.76921307226513,
+        -1341.8977144796868
+      ],
+      "size": {
+        "0": 315,
+        "1": 130
+      },
+      "flags": {},
+      "order": 43,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 241
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 239,
+          "widget": {
+            "name": "width",
+            "config": [
+              "INT",
+              {
+                "default": 512,
+                "min": 1,
+                "max": 8192,
+                "step": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 214,
+          "widget": {
+            "name": "height",
+            "config": [
+              "INT",
+              {
+                "default": 512,
+                "min": 1,
+                "max": 8192,
+                "step": 1
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            210
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        512,
+        512,
+        "disabled"
+      ]
+    },
+    {
+      "id": 144,
+      "type": "Paste By Mask",
+      "pos": [
+        478.76921307226525,
+        -1521.8977144796877
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 118
+      },
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_base",
+          "type": "IMAGE",
+          "link": 232
+        },
+        {
+          "name": "image_to_paste",
+          "type": "IMAGE",
+          "link": 242
+        },
+        {
+          "name": "mask",
+          "type": "IMAGE",
+          "link": 230
+        },
+        {
+          "name": "mask_mapping_optional",
+          "type": "MASK_MAPPING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            229
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Paste By Mask"
+      },
+      "widgets_values": [
+        "keep_ratio_fill"
+      ]
+    },
+    {
+      "id": 147,
+      "type": "Change Channel Count",
+      "pos": [
+        -62.23078692773485,
+        -1240.8977144796872
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 240
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            241,
+            242,
+            243
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Change Channel Count"
+      },
+      "widgets_values": [
+        "RGB"
+      ]
+    },
+    {
+      "id": 143,
+      "type": "Constant Mask",
+      "pos": [
+        20.769213072265217,
+        -1458.8977144796872
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "copy_image_size",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "explicit_width",
+          "type": "INT",
+          "link": 246,
+          "widget": {
+            "name": "explicit_width",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "explicit_height",
+          "type": "INT",
+          "link": 248,
+          "widget": {
+            "name": "explicit_height",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 1048576,
+                "step": 1
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            227,
+            232
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Constant Mask"
+      },
+      "widgets_values": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 135,
+      "type": "Switch (API)",
+      "pos": [
+        4654,
+        -434
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 79,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "*",
+          "link": 208
+        },
+        {
+          "name": "on_true",
+          "type": "*",
+          "link": 278
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            209
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Switch (API)"
+      },
+      "widgets_values": [
+        "inpaint_full_res",
+        false
+      ]
+    },
+    {
+      "id": 156,
+      "type": "Input (API)",
+      "pos": [
+        -862,
+        410
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            262
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "inpaint_full_res_padding",
+        "integer",
+        "0"
+      ]
+    },
+    {
+      "id": 169,
+      "type": "Input (API)",
+      "pos": [
+        -836,
+        240
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "default_input",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [
+            295,
+            296
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Input (API)"
+      },
+      "widgets_values": [
+        "mask_blur",
+        "integer",
+        "0"
+      ]
+    },
+    {
+      "id": 117,
+      "type": "Get Image Size",
+      "pos": [
+        -1423,
+        23
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 161
+        }
+      ],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            297
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            298
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Get Image Size"
+      }
+    },
+    {
+      "id": 152,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -2469.52453125,
+        -429.0340405273437
+      ],
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "reliberate_v10.safetensors"
+      ]
+    },
+    {
+      "id": 153,
+      "type": "PrimitiveNode",
+      "pos": [
+        -2163,
+        17
+      ],
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            300
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "default_string",
+            "config": [
+              "STRING",
+              {
+                "multiline": false
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Default Model",
+      "properties": {},
+      "widgets_values": [
+        "reliberate_v10.safetensors"
+      ]
+    }
+  ],
+  "links": [
+    [
+      41,
+      31,
+      1,
+      32,
+      0,
+      "CLIP"
+    ],
+    [
+      42,
+      31,
+      1,
+      34,
+      0,
+      "CLIP"
+    ],
+    [
+      43,
+      31,
+      0,
+      35,
+      0,
+      "MODEL"
+    ],
+    [
+      45,
+      34,
+      0,
+      35,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      49,
+      35,
+      0,
+      37,
+      0,
+      "LATENT"
+    ],
+    [
+      50,
+      31,
+      2,
+      37,
+      1,
+      "VAE"
+    ],
+    [
+      59,
+      31,
+      2,
+      36,
+      1,
+      "VAE"
+    ],
+    [
+      64,
+      44,
+      0,
+      32,
+      1,
+      "STRING"
+    ],
+    [
+      69,
+      47,
+      0,
+      45,
+      0,
+      "*"
+    ],
+    [
+      71,
+      48,
+      0,
+      13,
+      0,
+      "JSON_OBJECT"
+    ],
+    [
+      72,
+      50,
+      0,
+      34,
+      1,
+      "STRING"
+    ],
+    [
+      73,
+      51,
+      0,
+      35,
+      4,
+      "FLOAT"
+    ],
+    [
+      74,
+      52,
+      0,
+      35,
+      5,
+      "INT"
+    ],
+    [
+      76,
+      54,
+      0,
+      35,
+      7,
+      "FLOAT"
+    ],
+    [
+      78,
+      55,
+      0,
+      46,
+      0,
+      "IMAGE"
+    ],
+    [
+      79,
+      56,
+      0,
+      31,
+      0,
+      "reliberate_v10.safetensors,v1-5-pruned-emaonly.ckpt"
+    ],
+    [
+      80,
+      32,
+      0,
+      57,
+      0,
+      "*"
+    ],
+    [
+      82,
+      59,
+      0,
+      58,
+      0,
+      "controlnet11Models_depth.safetensors"
+    ],
+    [
+      83,
+      32,
+      0,
+      60,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      84,
+      58,
+      0,
+      60,
+      1,
+      "CONTROL_NET"
+    ],
+    [
+      86,
+      62,
+      0,
+      60,
+      3,
+      "FLOAT"
+    ],
+    [
+      87,
+      60,
+      0,
+      57,
+      1,
+      "*"
+    ],
+    [
+      88,
+      63,
+      0,
+      61,
+      0,
+      "*"
+    ],
+    [
+      90,
+      67,
+      0,
+      64,
+      1,
+      "*"
+    ],
+    [
+      91,
+      66,
+      0,
+      65,
+      0,
+      "controlnet11Models_depth.safetensors"
+    ],
+    [
+      93,
+      65,
+      0,
+      67,
+      1,
+      "CONTROL_NET"
+    ],
+    [
+      95,
+      69,
+      0,
+      67,
+      3,
+      "FLOAT"
+    ],
+    [
+      96,
+      63,
+      0,
+      68,
+      0,
+      "*"
+    ],
+    [
+      98,
+      73,
+      0,
+      70,
+      1,
+      "*"
+    ],
+    [
+      99,
+      72,
+      0,
+      71,
+      0,
+      "controlnet11Models_depth.safetensors"
+    ],
+    [
+      101,
+      71,
+      0,
+      73,
+      1,
+      "CONTROL_NET"
+    ],
+    [
+      103,
+      75,
+      0,
+      73,
+      3,
+      "FLOAT"
+    ],
+    [
+      104,
+      63,
+      0,
+      74,
+      0,
+      "*"
+    ],
+    [
+      105,
+      57,
+      0,
+      64,
+      0,
+      "*"
+    ],
+    [
+      106,
+      64,
+      0,
+      70,
+      0,
+      "*"
+    ],
+    [
+      107,
+      60,
+      0,
+      67,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      108,
+      67,
+      0,
+      73,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      109,
+      70,
+      0,
+      35,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      110,
+      37,
+      0,
+      78,
+      0,
+      "*"
+    ],
+    [
+      115,
+      77,
+      0,
+      78,
+      1,
+      "*"
+    ],
+    [
+      116,
+      61,
+      0,
+      80,
+      0,
+      "IMAGE"
+    ],
+    [
+      117,
+      80,
+      0,
+      77,
+      1,
+      "IMAGE"
+    ],
+    [
+      120,
+      86,
+      0,
+      59,
+      1,
+      "STRING"
+    ],
+    [
+      121,
+      86,
+      0,
+      66,
+      1,
+      "STRING"
+    ],
+    [
+      122,
+      86,
+      0,
+      72,
+      1,
+      "STRING"
+    ],
+    [
+      137,
+      89,
+      0,
+      40,
+      0,
+      "*"
+    ],
+    [
+      138,
+      89,
+      0,
+      48,
+      0,
+      "*"
+    ],
+    [
+      139,
+      68,
+      0,
+      94,
+      0,
+      "IMAGE"
+    ],
+    [
+      140,
+      94,
+      0,
+      93,
+      1,
+      "IMAGE"
+    ],
+    [
+      141,
+      78,
+      0,
+      93,
+      0,
+      "IMAGE"
+    ],
+    [
+      142,
+      93,
+      0,
+      92,
+      1,
+      "*"
+    ],
+    [
+      143,
+      78,
+      0,
+      92,
+      0,
+      "*"
+    ],
+    [
+      144,
+      95,
+      0,
+      97,
+      1,
+      "*"
+    ],
+    [
+      145,
+      74,
+      0,
+      96,
+      0,
+      "IMAGE"
+    ],
+    [
+      146,
+      96,
+      0,
+      95,
+      1,
+      "IMAGE"
+    ],
+    [
+      147,
+      92,
+      0,
+      95,
+      0,
+      "IMAGE"
+    ],
+    [
+      148,
+      92,
+      0,
+      97,
+      0,
+      "*"
+    ],
+    [
+      152,
+      110,
+      0,
+      53,
+      0,
+      "*"
+    ],
+    [
+      153,
+      53,
+      0,
+      111,
+      0,
+      "*"
+    ],
+    [
+      154,
+      110,
+      0,
+      111,
+      1,
+      "*"
+    ],
+    [
+      155,
+      111,
+      0,
+      35,
+      6,
+      "INT"
+    ],
+    [
+      156,
+      80,
+      0,
+      60,
+      2,
+      "IMAGE"
+    ],
+    [
+      157,
+      94,
+      0,
+      67,
+      2,
+      "IMAGE"
+    ],
+    [
+      158,
+      96,
+      0,
+      73,
+      2,
+      "IMAGE"
+    ],
+    [
+      161,
+      47,
+      0,
+      117,
+      0,
+      "IMAGE"
+    ],
+    [
+      162,
+      115,
+      0,
+      119,
+      1,
+      "INT"
+    ],
+    [
+      163,
+      118,
+      0,
+      119,
+      2,
+      "INT"
+    ],
+    [
+      165,
+      119,
+      0,
+      114,
+      0,
+      "*"
+    ],
+    [
+      166,
+      115,
+      0,
+      120,
+      1,
+      "INT"
+    ],
+    [
+      168,
+      118,
+      0,
+      120,
+      2,
+      "INT"
+    ],
+    [
+      169,
+      120,
+      0,
+      121,
+      0,
+      "IMAGE"
+    ],
+    [
+      171,
+      45,
+      0,
+      121,
+      1,
+      "IMAGE"
+    ],
+    [
+      172,
+      120,
+      0,
+      121,
+      2,
+      "IMAGE"
+    ],
+    [
+      173,
+      121,
+      0,
+      114,
+      1,
+      "*"
+    ],
+    [
+      174,
+      114,
+      0,
+      122,
+      0,
+      "*"
+    ],
+    [
+      176,
+      45,
+      0,
+      123,
+      1,
+      "IMAGE"
+    ],
+    [
+      177,
+      120,
+      0,
+      123,
+      2,
+      "IMAGE"
+    ],
+    [
+      178,
+      123,
+      0,
+      122,
+      1,
+      "*"
+    ],
+    [
+      179,
+      122,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      180,
+      122,
+      0,
+      63,
+      0,
+      "IMAGE"
+    ],
+    [
+      181,
+      124,
+      0,
+      114,
+      2,
+      "STRING"
+    ],
+    [
+      182,
+      124,
+      0,
+      122,
+      2,
+      "STRING"
+    ],
+    [
+      183,
+      119,
+      0,
+      125,
+      0,
+      "IMAGE"
+    ],
+    [
+      184,
+      125,
+      0,
+      123,
+      0,
+      "IMAGE"
+    ],
+    [
+      195,
+      45,
+      0,
+      119,
+      0,
+      "IMAGE"
+    ],
+    [
+      197,
+      36,
+      0,
+      130,
+      0,
+      "*"
+    ],
+    [
+      198,
+      130,
+      0,
+      35,
+      3,
+      "LATENT"
+    ],
+    [
+      200,
+      132,
+      0,
+      131,
+      2,
+      "MASK"
+    ],
+    [
+      201,
+      31,
+      2,
+      131,
+      1,
+      "VAE"
+    ],
+    [
+      206,
+      134,
+      0,
+      133,
+      1,
+      "*"
+    ],
+    [
+      207,
+      133,
+      0,
+      132,
+      0,
+      "IMAGE"
+    ],
+    [
+      208,
+      131,
+      0,
+      135,
+      0,
+      "*"
+    ],
+    [
+      209,
+      135,
+      0,
+      130,
+      1,
+      "*"
+    ],
+    [
+      210,
+      138,
+      0,
+      137,
+      0,
+      "*"
+    ],
+    [
+      211,
+      124,
+      0,
+      137,
+      2,
+      "STRING"
+    ],
+    [
+      214,
+      118,
+      0,
+      138,
+      2,
+      "INT"
+    ],
+    [
+      217,
+      137,
+      0,
+      140,
+      0,
+      "*"
+    ],
+    [
+      218,
+      141,
+      0,
+      140,
+      1,
+      "*"
+    ],
+    [
+      219,
+      124,
+      0,
+      140,
+      2,
+      "STRING"
+    ],
+    [
+      222,
+      139,
+      0,
+      141,
+      2,
+      "IMAGE"
+    ],
+    [
+      227,
+      143,
+      0,
+      141,
+      0,
+      "IMAGE"
+    ],
+    [
+      229,
+      144,
+      0,
+      137,
+      1,
+      "*"
+    ],
+    [
+      230,
+      139,
+      0,
+      144,
+      2,
+      "IMAGE"
+    ],
+    [
+      232,
+      143,
+      0,
+      144,
+      0,
+      "IMAGE"
+    ],
+    [
+      236,
+      47,
+      0,
+      145,
+      0,
+      "IMAGE"
+    ],
+    [
+      237,
+      145,
+      0,
+      129,
+      0,
+      "*"
+    ],
+    [
+      239,
+      115,
+      0,
+      138,
+      1,
+      "INT"
+    ],
+    [
+      240,
+      129,
+      0,
+      147,
+      0,
+      "IMAGE"
+    ],
+    [
+      241,
+      147,
+      0,
+      138,
+      0,
+      "IMAGE"
+    ],
+    [
+      242,
+      147,
+      0,
+      144,
+      1,
+      "IMAGE"
+    ],
+    [
+      243,
+      147,
+      0,
+      141,
+      1,
+      "IMAGE"
+    ],
+    [
+      244,
+      122,
+      0,
+      148,
+      0,
+      "IMAGE"
+    ],
+    [
+      245,
+      148,
+      0,
+      131,
+      0,
+      "IMAGE"
+    ],
+    [
+      246,
+      115,
+      0,
+      143,
+      1,
+      "INT"
+    ],
+    [
+      247,
+      115,
+      0,
+      139,
+      1,
+      "INT"
+    ],
+    [
+      248,
+      118,
+      0,
+      143,
+      2,
+      "INT"
+    ],
+    [
+      249,
+      118,
+      0,
+      139,
+      2,
+      "INT"
+    ],
+    [
+      253,
+      140,
+      0,
+      150,
+      0,
+      "IMAGE"
+    ],
+    [
+      255,
+      150,
+      0,
+      133,
+      0,
+      "*"
+    ],
+    [
+      256,
+      150,
+      0,
+      134,
+      0,
+      "IMAGE"
+    ],
+    [
+      257,
+      150,
+      0,
+      151,
+      0,
+      "IMAGE"
+    ],
+    [
+      259,
+      115,
+      0,
+      155,
+      1,
+      "INT"
+    ],
+    [
+      260,
+      118,
+      0,
+      155,
+      2,
+      "INT"
+    ],
+    [
+      261,
+      129,
+      0,
+      155,
+      0,
+      "IMAGE"
+    ],
+    [
+      262,
+      156,
+      0,
+      155,
+      3,
+      "INT"
+    ],
+    [
+      263,
+      45,
+      0,
+      157,
+      0,
+      "IMAGE"
+    ],
+    [
+      264,
+      155,
+      0,
+      157,
+      1,
+      "IMAGE"
+    ],
+    [
+      265,
+      115,
+      0,
+      157,
+      3,
+      "INT"
+    ],
+    [
+      266,
+      118,
+      0,
+      157,
+      4,
+      "INT"
+    ],
+    [
+      269,
+      155,
+      0,
+      160,
+      1,
+      "IMAGE"
+    ],
+    [
+      270,
+      115,
+      0,
+      160,
+      3,
+      "INT"
+    ],
+    [
+      271,
+      118,
+      0,
+      160,
+      4,
+      "INT"
+    ],
+    [
+      272,
+      129,
+      0,
+      160,
+      0,
+      "IMAGE"
+    ],
+    [
+      273,
+      160,
+      0,
+      161,
+      0,
+      "IMAGE"
+    ],
+    [
+      274,
+      160,
+      0,
+      162,
+      0,
+      "IMAGE"
+    ],
+    [
+      276,
+      162,
+      0,
+      163,
+      2,
+      "MASK"
+    ],
+    [
+      277,
+      31,
+      2,
+      163,
+      1,
+      "VAE"
+    ],
+    [
+      278,
+      163,
+      0,
+      135,
+      1,
+      "*"
+    ],
+    [
+      279,
+      37,
+      0,
+      164,
+      0,
+      "*"
+    ],
+    [
+      280,
+      37,
+      0,
+      165,
+      0,
+      "*"
+    ],
+    [
+      281,
+      164,
+      0,
+      165,
+      1,
+      "*"
+    ],
+    [
+      282,
+      165,
+      0,
+      77,
+      0,
+      "IMAGE"
+    ],
+    [
+      283,
+      45,
+      0,
+      166,
+      0,
+      "IMAGE"
+    ],
+    [
+      284,
+      37,
+      0,
+      166,
+      1,
+      "IMAGE"
+    ],
+    [
+      286,
+      166,
+      0,
+      164,
+      1,
+      "*"
+    ],
+    [
+      287,
+      157,
+      0,
+      167,
+      0,
+      "IMAGE"
+    ],
+    [
+      288,
+      167,
+      0,
+      163,
+      0,
+      "IMAGE"
+    ],
+    [
+      290,
+      165,
+      0,
+      55,
+      1,
+      "*"
+    ],
+    [
+      291,
+      155,
+      0,
+      166,
+      2,
+      "IMAGE"
+    ],
+    [
+      292,
+      155,
+      0,
+      168,
+      0,
+      "IMAGE"
+    ],
+    [
+      293,
+      97,
+      0,
+      89,
+      0,
+      "*"
+    ],
+    [
+      294,
+      167,
+      0,
+      158,
+      0,
+      "IMAGE"
+    ],
+    [
+      295,
+      169,
+      0,
+      131,
+      3,
+      "INT"
+    ],
+    [
+      296,
+      169,
+      0,
+      163,
+      3,
+      "INT"
+    ],
+    [
+      297,
+      117,
+      0,
+      115,
+      0,
+      "*"
+    ],
+    [
+      298,
+      117,
+      1,
+      118,
+      0,
+      "*"
+    ],
+    [
+      300,
+      153,
+      0,
+      56,
+      1,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Output",
+      "bounding": [
+        2317,
+        406,
+        1106,
+        925
+      ],
+      "color": "#3f789e"
+    },
+    {
+      "title": "img2img",
+      "bounding": [
+        128,
+        439,
+        1313,
+        666
+      ],
+      "color": "#3f789e"
+    },
+    {
+      "title": "Inputs",
+      "bounding": [
+        -1542,
+        -189,
+        1230,
+        1569
+      ],
+      "color": "#3f789e"
+    },
+    {
+      "title": "Stubs for testing in default editor",
+      "bounding": [
+        -2489,
+        656,
+        877,
+        734
+      ],
+      "color": "#3f789e"
+    },
+    {
+      "title": "Controlnet",
+      "bounding": [
+        -1223,
+        1447,
+        3271,
+        1768
+      ],
+      "color": "#3f789e"
+    },
+    {
+      "title": "Defaults - Edit Me",
+      "bounding": [
+        -2431,
+        -107,
+        869,
+        551
+      ],
+      "color": "#8AA"
+    },
+    {
+      "title": "Resize Modes",
+      "bounding": [
+        -353,
+        -2631,
+        1831,
+        813
+      ],
+      "color": "#3f789e"
+    },
+    {
+      "title": "Resize Inpaint Mask",
+      "bounding": [
+        -91,
+        -1737,
+        2695,
+        861
+      ],
+      "color": "#3f789e"
+    },
+    {
+      "title": "Inpaint (Standard)",
+      "bounding": [
+        2742,
+        -1568,
+        2126,
+        600
+      ],
+      "color": "#3f789e"
+    },
+    {
+      "title": "Inpaint (Full Resolution)",
+      "bounding": [
+        2389,
+        -813,
+        2664,
+        1023
+      ],
+      "color": "#3f789e"
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
