@@ -26,7 +26,7 @@ This node is the primary way to get input for your workflow.
 * `default_input` - If the path does not exist in the request (or you're running in the default UI rather than using an HTTP endpoint)
 * `default_string` - An alternative way to specify the default value. Rather than using a second node, you can specify the default value directly in the node as a string.
 
-![InputExample](https://github.com/BadCafeCode/apitools-comfyui/assets/3157454/33737821-71ef-4eb4-ab9a-23d509e4ca7d)
+![InputExample](https://github.com/BadCafeCode/apitools-comfyui/assets/3157454/612b3185-2738-474d-a2ec-453ef25bbda7)
 
 #### `Switch (API)`
 This node allows entire sections of the graph to be excluded based on the existence (or lack) of certain arguments. For example, the HighResFix part of the txt2img graph will be skipped if `hr_fix` is not set to true.
@@ -35,7 +35,7 @@ This node allows entire sections of the graph to be excluded based on the existe
 * `on_true` - The value that will be used by the switch if the path exists and is truthy.
 * `test_switch` - This controls which path is used when running via the default UI (for development purposes) rather than via an actual HTTP endpoint. Note that in the default UI, both input nodes will need to be evaluated even though only one of them will be used. (ComfyUI doesn't currently have support for lazy evaluation.)
 
-![SwitchExample](https://github.com/BadCafeCode/apitools-comfyui/assets/3157454/cabc0e49-2efe-497e-a980-3eb9d4fb0a9c)
+![SwitchExample](https://github.com/BadCafeCode/apitools-comfyui/assets/3157454/a849c7c7-33a8-4cb0-aaa8-6282049b768b)
 
 #### `Value Switch (API)`
 This node works the same was as the Switch, but compares equality to a particular value rather than simply checking whether the value is true or false.
@@ -45,7 +45,7 @@ This node works the same was as the Switch, but compares equality to a particula
 * `on_equal` - The value that will be used by the switch if the path exists and is equal to the specified value.
 * `test_value` - This controls which path is used when running via the default UI (for development purposes) rather than via an actual HTTP endpoint. Note that in the default UI, both input nodes will need to be evaluated even though only one of them will be used. (ComfyUI doesn't currently have support for lazy evaluation.)
 
-![ValueSwitchExample](https://github.com/BadCafeCode/apitools-comfyui/assets/3157454/4f145673-ec9a-4584-8903-43bf1dc0bfc5)
+![ValueSwitchExample](https://github.com/BadCafeCode/apitools-comfyui/assets/3157454/1176c9a2-6a6a-48fd-8902-be9329eb544f)
 
 #### `Random Seed (API)`
 This node is used to generate random numbers during endpoint execution. The special node is necessary due to technical reasons (specifically the fact that the back-end doesn't know or care about the `control_after_generation` inputs to nodes).
@@ -57,7 +57,7 @@ This node is used to return values or images to the requester.
 * `value` - The value to serialize.
 * `json_object_optional` - This input can be used to insert values into an existing JSON object. For example, an image could be inserted with the path `results[].image` and then the seed associated with that image saved with `results[-1].seed`.
 
-![OutputExample](https://github.com/BadCafeCode/apitools-comfyui/assets/3157454/8264bec6-33a7-4c21-90a2-92bc5379f733)
+![OutputExample](https://github.com/BadCafeCode/apitools-comfyui/assets/3157454/c7905866-dcb2-4dda-ba94-2ae6ae122091)
 
 #### `API Output`
 In order for JSON results to actually be returned to the user, they must be passed into this node. If multiple JSON objects act as inputs to this node, they will be recursively merged together (with arrays concatenating)
