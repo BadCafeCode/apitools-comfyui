@@ -10,24 +10,6 @@ import base64
 import random
 from PIL import Image
 
-package_list = None
-def update_package_list():
-    import sys
-    import subprocess
-
-    global package_list
-    package_list = [r.decode().split('==')[0] for r in subprocess.check_output([sys.executable, '-m', 'pip', 'freeze']).split()]
-
-def ensure_package(package_name, import_path):
-    global package_list
-    if package_list == None:
-        update_package_list()
-
-    if package_name not in package_list:
-        print("(First Run) Installing missing package %s" % package_name)
-        subprocess.check_call([sys.executable, '-m', 'pip', '-q', 'install', import_path])
-        update_package_list()
-
 # Eww. I'm sure there's a better way to do this, but it's probably not worth the effort
 def store_at_position(obj, result, path):
     path = re.split('[\.\[]', path)
@@ -289,7 +271,7 @@ class APIOutputNode:
             path, value = obj[i]
             store_at_position(output, copy.deepcopy(value), path)
 
-        return { "sync_result": output }
+        return { "ui": { "api_output": [output] } }
 
 class APIInputNode:
     def __init__(self):
@@ -330,68 +312,22 @@ class APIInputNode:
         elif kind == "float":
             value = float(value)
         elif kind == "boolean":
-            value = bool(value)
+            if value.lower() == "true":
+                value = True
+            elif value.lower() == "false":
+                value = False
+            else:
+                try:
+                    value = bool(int(value))
+                except:
+                    value = False
         elif kind == "image":
             if not isinstance(value, torch.Tensor):
                 value = deserialize_image(value)
 
         return (value,)
 
-class APISwitchNode:
-    def __init__(self):
-        pass
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "path": ("STRING", {"multiline": False}),
-                "test_switch": ([False, True],),
-            },
-            "optional": {
-                "on_false": ("*",),
-                "on_true": ("*",),
-            },
-        }
-
-    FUNCTION = "switch"
-    RETURN_TYPES = ("*",)
-
-    CATEGORY = "API Input"
-
-    def switch(self, path, test_switch, on_false = None, on_true = None):
-        if test_switch:
-            return (on_true,)
-        else:
-            return (on_false,)
-
-class APIValueSwitchNode:
-    def __init__(self):
-        pass
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "path": ("STRING", {"multiline": False}),
-                "value_string": ("STRING", {"multiline": False}),
-            },
-            "optional": {
-                "on_not_equal": ("*",),
-                "on_equal": ("*",),
-                "test_value": ("STRING", {"multiline": False}),
-            },
-        }
-
-    FUNCTION = "value_switch"
-    RETURN_TYPES = ("*",)
-
-    CATEGORY = "API Input"
-
-    def value_switch(self, path, value_string, on_not_equal = None, on_equal = None, test_value = None):
-        if str(test_value) == value_string:
-            return (on_equal,)
-        return (on_not_equal,)
-
-class APIRandomSeed:
+class APIRandomSeedInput:
     def __init__(self):
         pass
     @classmethod
@@ -399,6 +335,7 @@ class APIRandomSeed:
         return {
             "required": {
                 "seed": ("INT", {"default": -1, "min": -1, "max": 0xffffffffffffffff}),
+                "path": ("STRING", {"multiline": False}),
             }
         }
 
@@ -407,7 +344,7 @@ class APIRandomSeed:
 
     CATEGORY = "API Input"
 
-    def random_seed(self, seed):
+    def random_seed(self, seed, path):
         if seed is None or seed == -1:
             seed = random.randint(0, 0xffffffffffffffff)
         return (seed,)
@@ -464,8 +401,6 @@ NODE_CLASS_MAPPINGS = {
     # "Float Input (API)": GenericInputNodeFactory("Float Input (API)", "FLOAT", default_value=0.0),
     # "Text Input (API)": GenericInputNodeFactory("String Input (API)", "STRING", default_value=""),
 
-    "Switch (API)": APISwitchNode,
-    "Value Switch (API)": APIValueSwitchNode,
-    "Random Seed (API)": APIRandomSeed,
+    "Random Seed Input (API)": APIRandomSeedInput,
 
 }

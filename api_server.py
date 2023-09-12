@@ -8,6 +8,7 @@ from folder_paths import base_path
 import json
 import re
 import random
+import uuid
 
 def base64_encode_image(image_path):
     with open(image_path, "rb") as image_file:
@@ -22,6 +23,22 @@ def get_input_link(node, input_name):
         if input["name"] == input_name:
             return "widget" in input, input["link"]
     return True, None
+
+def merge_dict_recursive(dict1, dict2):
+    """
+    Recursively merges two dictionaries, concatenating arrays instead of overwriting them.
+    """
+    for key in dict2:
+        if key in dict1:
+            if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
+                merge_dict_recursive(dict1[key], dict2[key])
+            elif isinstance(dict1[key], list) and isinstance(dict2[key], list):
+                dict1[key].extend(dict2[key])
+            else:
+                dict1[key] = dict2[key]
+        else:
+            dict1[key] = dict2[key]
+    return dict1
 
 def instantiate_from_save(node_defs, graph):
     g = GraphBuilder()
@@ -104,44 +121,16 @@ def resolve_request(graph, body):
                     node.set_input("default_string", None)
             else:
                 print("Error: path is not a string:", path)
-        elif node.class_type == "Switch (API)":
+        elif node.class_type == "Random Seed Input (API)":
             path = node.get_input("path")
+            seed = -1
             if isinstance(path, str):
                 value = read_at_position(body, path)
-            else:
-                print("Error: path is not a string:", path)
-                value = None
-
-            if value is None:
-                value = node.get_input("switch")
-            if value:
-                graph.replace_node_output(id, 0, node.get_input("on_true"))
-            else:
-                graph.replace_node_output(id, 0, node.get_input("on_false"))
-        elif node.class_type == "Value Switch (API)":
-            path = node.get_input("path")
-            if isinstance(path, str):
-                value = read_at_position(body, path)
-            else:
-                print("Error: path is not a string:", path)
-                value = None
-
-            is_equal = False
-            try:
-                if isinstance(value, int):
-                    is_equal = value == int(node.get_input("value_string"))
-                elif isinstance(value, float):
-                    is_equal = value == float(node.get_input("value_string"))
-                else:
-                    is_equal = str(value) == node.get_input("value_string")
-            except:
-                pass
-            if is_equal:
-                graph.replace_node_output(id, 0, node.get_input("on_equal"))
-            else:
-                graph.replace_node_output(id, 0, node.get_input("on_not_equal"))
-        elif node.class_type == "Random Seed (API)":
-            node.set_input("seed", random.randint(0, 0xffffffffffffffff))
+                if value is not None:
+                    seed = int(value)
+            if seed == -1:
+                seed = random.randint(0, 0xffffffffffffffff)
+            node.set_input("seed", seed)
     return graph
 
 def query_to_dict(query):
@@ -150,10 +139,139 @@ def query_to_dict(query):
         d[key] = value
     return d
 
+cached_objects = None
 def init_api_server():
     routes = PromptServer.instance.routes
 
-    # @routes.get('/api/{endpoint_name}')
+    @routes.get('/api_endpoints')
+    async def api_endpoints(request):
+        endpoints_path = os.path.join(base_path, "endpoints")
+        files = [f for f in os.listdir(endpoints_path) if os.path.isfile(os.path.join(endpoints_path, f)) and f.endswith(".json")]
+        files = [os.path.splitext(f)[0] for f in files]
+        return web.json_response(files)
+
+    def get_best_type(t1, t2):
+        if t1 is None:
+            return t2
+        if t2 is None:
+            return t1
+        if t1 == "*":
+            return t2
+        return t1
+
+    def get_node_output_type(graph, node_id, output_id, node_defs, cached = {}):
+        cached_value = cached.get((node_id, output_id), None)
+        if cached_value is not None:
+            return cached_value
+        cached[(node_id,output_id)] = True
+
+        result = None
+        node = graph.nodes[node_id]
+        t = node.class_type
+        if t == "Input (API)":
+            kind = node.get_input("kind")
+            if kind == "string":
+                result = "STRING"
+            elif kind == "integer":
+                result = "INT"
+            elif kind == "float":
+                result = "FLOAT"
+            elif kind == "boolean":
+                result = "BOOLEAN"
+            elif kind == "image":
+                result = "IMAGE"
+        else:
+            node_def = node_defs[t]
+            result = node_def["output"][output_id]
+
+        cached[(node_id,output_id)] = result
+        return result
+
+
+    def get_node_input_type(graph, node_id, input_id, node_defs, cached = {}):
+        cached_value = cached.get((node_id, input_id), None)
+        if cached_value is not None:
+            return cached_value
+        cached[(node_id,input_id)] = True
+
+        result = None
+        node = graph.nodes[node_id]
+        input_value = node.get_input(input_id)
+        if input_value is None:
+            result =  None
+        elif isinstance(input_value, list):
+            result = get_node_output_type(graph, input_value[0], input_value[1], node_defs, cached)
+        elif input_id in node_defs[node.class_type]["input"].get("required", []):
+            result = node_defs[node.class_type]["input"]["required"][input_id][0]
+        elif input_id in node_defs[node.class_type]["input"].get("optional", []):
+            result = node_defs[node.class_type]["input"]["optional"][input_id][0]
+        elif isinstance(input_value, str):
+            result = "STRING"
+        elif isinstance(input_value, int) or isinstance(input_value, float):
+            result = "FLOAT"
+        else:
+            result = None
+
+        cached[(node_id,input_id)] = result
+        return result
+
+    def string_to_kind(string, kind):
+        if kind == "STRING":
+            return string
+        elif kind == "INT":
+            return int(string)
+        elif kind == "FLOAT":
+            return float(string)
+        elif kind == "BOOLEAN":
+            return string.lower() == "true"
+        else:
+            return None
+
+    @routes.get('/api_info/{endpoint_name}')
+    async def api_info(request):
+        endpoint_name = request.match_info['endpoint_name']
+        endpoints_path = os.path.join(base_path, "endpoints")
+        graph = await api_instantiate(endpoint_name, endpoints_path)
+        assert graph is not None
+        node_defs = await get_node_defs()
+
+        inputs = {}
+        default_values = {}
+        switch_inputs = {}
+        outputs = {}
+        cached = {}
+        for id, node in graph.nodes.items():
+            if node.class_type == "Input (API)":
+                path = node.get_input("path")
+                default_string = node.get_input("default_string")
+                if isinstance(path, str):
+                    inputs[path] = get_node_output_type(graph, id, 0, node_defs, cached)
+                    if default_string is not None and default_string != "" and path not in default_values:
+                        default = string_to_kind(default_string, inputs[path])
+                        if default is not None:
+                            default_values[path] = default
+            elif node.class_type == "Random Seed Input (API)":
+                path = node.get_input("path")
+                if isinstance(path, str):
+                    inputs[path] = "INT"
+                    default_values[path] = node.get_input("seed")
+            elif node.class_type == "Serialize (API)":
+                path = node.get_input("path")
+                if isinstance(path, str):
+                    outputs[path] = get_node_input_type(graph, id, "value", node_defs, cached)
+
+        for path in switch_inputs:
+            if path not in inputs:
+                inputs[path] = "BOOLEAN"
+
+        return web.json_response({
+            "inputs": inputs,
+            "default_values": default_values,
+            "outputs": outputs
+        })
+
+
+    @routes.get('/api/{endpoint_name}')
     async def api_endpoint_get(request):
         body = query_to_dict(request.rel_url.query)
         endpoint_name = request.match_info['endpoint_name']
@@ -167,7 +285,7 @@ def init_api_server():
         endpoints_path = os.path.join(base_path, "endpoints")
         return await api_endpoint(endpoint_name, endpoints_path, body)
 
-    # @routes.get('/sdapi/v1/{endpoint_name}')
+    @routes.get('/sdapi/v1/{endpoint_name}')
     async def sdapi_endpoint_get(request):
         body = query_to_dict(request.rel_url.query)
         endpoint_name = request.match_info['endpoint_name']
@@ -189,7 +307,28 @@ def init_api_server():
             address = "127.0.0.1"
         return "http://" + address + ":" + str(port)
 
+    def get_ws_address():
+        address = PromptServer.instance.address
+        port = PromptServer.instance.port
+        if address == "0.0.0.0":
+            address = "127.0.0.1"
+        return "ws://" + address + ":" + str(port)
+
     async def api_getprompt(endpoint_name, endpoints_path, body):
+        instantiated = await api_instantiate(endpoint_name, endpoints_path)
+        resolved = resolve_request(instantiated, body)
+        prompt = { "prompt": resolved.finalize() }
+        return prompt
+
+    async def get_node_defs():
+        global cached_objects
+        if cached_objects is None:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(get_address() + '/object_info') as resp:
+                    cached_objects = await resp.json()
+        return cached_objects
+
+    async def api_instantiate(endpoint_name, endpoints_path):
         endpoint_path = os.path.join(endpoints_path, endpoint_name + ".json")
         if not os.path.exists(endpoint_path) or endpoints_path != os.path.commonpath([endpoints_path, endpoint_path]):
             raise web.HTTPNotFound(reason="No such endpoint available.")
@@ -202,37 +341,53 @@ def init_api_server():
         except:
             raise web.HTTPNotFound(reason="Could not load endpoint.")
 
-        async with aiohttp.ClientSession() as session:
-            async with session.get(get_address() + '/object_info') as resp:
-                node_defs = await resp.json()
-            instantiated = instantiate_from_save(node_defs, graph)
-            resolved = resolve_request(instantiated, body)
-            prompt = { "prompt": resolved.finalize() }
-            return prompt
+        node_defs = await get_node_defs()
+
+        instantiated = instantiate_from_save(node_defs, graph)
+        return instantiated
 
     async def api_endpoint(endpoint_name, endpoints_path, body):
         prompt = await api_getprompt(endpoint_name, endpoints_path, body)
+        client_id = str(uuid.uuid4())
+        prompt["client_id"] = client_id
         async with aiohttp.ClientSession() as session:
-            async with session.post(get_address() + '/prompt_sync', json=prompt) as resp:
-                try:
+            async with session.ws_connect("{}/ws?clientId={}".format(get_ws_address(), client_id)) as ws:
+                async with session.post(get_address() + '/prompt', json=prompt) as resp:
+                    try:
+                        response = await resp.json()
+                        prompt_id = response["prompt_id"]
+                    except Exception as e:
+                        print("Error:", e)
+                        raise web.HTTPInternalServerError(reason=e)
+                async for msg in ws:
+                    if msg.type == aiohttp.WSMsgType.TEXT:
+                        message = msg.json()
+                        if message["type"] == "executing":
+                            data = message["data"]
+                            if data["node"] is None and data["prompt_id"] == prompt_id:
+                                break
+                async with session.get(get_address() + '/history/' + prompt_id) as resp:
                     response = await resp.json()
-                except Exception as e:
-                    print("Error:", e)
-                    raise web.HTTPInternalServerError(reason=e)
-                if len(response) == 1 and "RETURN_PNG" in response:
-                    base64_image = response["RETURN_PNG"][0]
-                    image_bytes = base64.b64decode(base64_image)
-                    return web.Response(body=image_bytes, content_type="image/png")
-                return web.json_response(response)
+                    result = {}
+                    ui_outputs = response[prompt_id]["outputs"]
+                    for node_id in ui_outputs:
+                        if "api_output" in ui_outputs[node_id]:
+                            for x in ui_outputs[node_id]["api_output"]:
+                                result = merge_dict_recursive(result, x)
+                    if len(result) == 1 and "RETURN_PNG" in result:
+                        base64_image = result["RETURN_PNG"][0]
+                        image_bytes = base64.b64decode(base64_image)
+                        return web.Response(body=image_bytes, content_type="image/png")
+                    return web.json_response(result)
 
-    # @routes.get('/api_prompt/{endpoint_name}')
+    @routes.get('/api_prompt/{endpoint_name}')
     async def api_get_prompt(request):
         body = query_to_dict(request.rel_url.query)
         endpoints_path = os.path.join(base_path, "endpoints")
         prompt = await api_getprompt(request.match_info['endpoint_name'], endpoints_path, body)
         return web.json_response(prompt)
 
-    # @routes.get('/sdapi_prompt/{endpoint_name}')
+    @routes.get('/sdapi_prompt/{endpoint_name}')
     async def sdapi_get_prompt(request):
         body = query_to_dict(request.rel_url.query)
         endpoints_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sdapi")
